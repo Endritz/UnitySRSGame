@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public Vector2 velocity;
     public float maxAcceleration = 10;
     public float acceleration = 10;
+    public float distance = 0;
     public float groundHeight = 10;
     public float jumpVelocity = 50;
     public float maxXVelocity = 100;
@@ -24,7 +25,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -33,7 +34,7 @@ public class Player : MonoBehaviour
         Vector2 pos = transform.position;
         float groundDisatance = Mathf.Abs(pos.y - groundHeight);
 
-        if(isGrounded || groundDisatance <= jumpGroundThreshold)
+        if (isGrounded || groundDisatance <= jumpGroundThreshold)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -45,7 +46,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             isHoldingJump = false;
         }
@@ -57,14 +58,14 @@ public class Player : MonoBehaviour
         if (!isGrounded)
         {
 
-            if(isHoldingJump)
+            if (isHoldingJump)
             {
                 holdJumpTimer += Time.fixedDeltaTime;
-                if(holdJumpTimer >= maxHoldJumpTime)
+                if (holdJumpTimer >= maxHoldJumpTime)
                 {
                     isHoldingJump = false;
                 }
-            }    
+            }
             //increment player position every frame of game also adjust how much the next frame thats able to get adjusted, take grav and pull back velocity so position gets adjusted by a smaller velocity till velocity is 0 then grav makes velocity go negative.
 
             pos.y += velocity.y * Time.fixedDeltaTime;
@@ -79,6 +80,8 @@ public class Player : MonoBehaviour
             }
         }
 
+        distance += velocity.x * Time.fixedDeltaTime;
+
         if (isGrounded)
         {
             velocity.x += acceleration * Time.fixedDeltaTime;
@@ -87,7 +90,7 @@ public class Player : MonoBehaviour
 
             if (velocity.x >= maxXVelocity)
             {
-                velocity.x = maXVelocity;
+                velocity.x = maxXVelocity;
             }
         }
 
