@@ -8,8 +8,11 @@ public class Player : MonoBehaviour
 
     public float gravity;
     public Vector2 velocity;
+    public float maxAcceleration = 10;
+    public float acceleration = 10;
     public float groundHeight = 10;
     public float jumpVelocity = 50;
+    public float maxXVelocity = 100;
     public bool isGrounded = false;
 
     public bool isHoldingJump = false;
@@ -73,6 +76,18 @@ public class Player : MonoBehaviour
             {
                 pos.y = groundHeight;
                 isGrounded = true;
+            }
+        }
+
+        if (isGrounded)
+        {
+            velocity.x += acceleration * Time.fixedDeltaTime;
+            float velocityRatio = velocity.x / maxXVelocity;
+            acceleration = maxAcceleration * (1 - velocityRatio);
+
+            if (velocity.x >= maxXVelocity)
+            {
+                velocity.x = maXVelocity;
             }
         }
 
