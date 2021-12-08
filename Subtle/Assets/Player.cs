@@ -24,6 +24,9 @@ public class Player : MonoBehaviour
 
     public bool isDead = false;
 
+    private float boostTimer;
+    private bool boosting;
+
     void Start()
     {
 
@@ -67,6 +70,19 @@ public class Player : MonoBehaviour
         {
             isDead = true;
 
+        }
+
+        if (boosting)
+        {
+            boostTimer += Time.deltaTime;
+            //this is timer 
+            if (boostTimer >= 5)
+            {
+                maxXVelocity -= 15;
+                jumpVelocity -= 15;
+                boostTimer = 0;
+                boosting = false;
+            }
         }
 
         if (!isGrounded)
@@ -179,8 +195,16 @@ public class Player : MonoBehaviour
 
     void hitObstacle(Obstacle obstacle)
     {
-        Destroy(obstacle.gameObject);
-        velocity.x *= 0.7f;
+        // Destroy(obstacle.gameObject);
+        // velocity.x *= 0.7f;
+        if (obstacle.tag == "Drug")
+        {
+            boosting = true;
+            velocity.x += 10;
+            jumpVelocity +=10;
+            Destroy(obstacle.gameObject);
+        }
     }
+
 
 }
