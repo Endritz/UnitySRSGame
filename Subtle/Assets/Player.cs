@@ -81,9 +81,9 @@ public class Player : MonoBehaviour
             //this is timer 
             if (boostTimer >= 5)
             {
-                maxXVelocity -= 15;
-                jumpVelocity -= 15;
-                velocity.x -= 10;
+                maxXVelocity -= 20;
+                jumpVelocity -= 20;
+                velocity.x -= 25;
                 boostTimer = 0;
                 boosting = false;
             }
@@ -211,7 +211,7 @@ public class Player : MonoBehaviour
         else if (obstacle.tag == "Cash")
         {
 
-            maxXVelocity += 10;
+            maxXVelocity += 15;
             jumpVelocity += 5;
             Destroy(obstacle.gameObject);
         }
