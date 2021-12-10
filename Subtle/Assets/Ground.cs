@@ -14,6 +14,7 @@ public class Ground : MonoBehaviour
     bool didGenerateGround = false;
 
     public Obstacle boxTemplate;
+    public Obstacle cashTemplate;
 
     private void Awake()
     {
@@ -27,13 +28,13 @@ public class Ground : MonoBehaviour
 
     void Start()
     {
-
+            
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     private void FixedUpdate()
@@ -90,15 +91,15 @@ public class Ground : MonoBehaviour
         float minX = screenRight + 5;
         float actualX = Random.Range(minX, maxX);
 
-        pos.x = actualX + goCollider.size.x / 2;
+        pos.x = actualX + goCollider.size.x / 2; 
         go.transform.position = pos;
 
         Ground goGround = go.GetComponent<Ground>();
         goGround.groundHeight = go.transform.position.y + (goCollider.size.y / 2);
 
 
-        int obstacleNum = Random.Range(0, 4);
-        for (int i = 0; i < obstacleNum; i++)
+        int obstacleNum = Random.Range(0, 2);
+        for (int i=0; i<obstacleNum; i++)
         {
             GameObject box = Instantiate(boxTemplate.gameObject);
             float y = goGround.groundHeight;
@@ -108,6 +109,17 @@ public class Ground : MonoBehaviour
             float x = Random.Range(left, right);
             Vector2 boxPos = new Vector2(x, y);
             box.transform.position = boxPos;
+        }
+        for (int i=0; i<obstacleNum; i++)
+        {
+            GameObject cash = Instantiate(cashTemplate.gameObject);
+            float y = goGround.groundHeight;
+            float halfWidth = goCollider.size.x / 2 - 1;
+            float left = go.transform.position.x - halfWidth;
+            float right = go.transform.position.x + halfWidth;
+            float x = Random.Range(left, right);
+            Vector2 cashPos = new Vector2(x, y);
+            cash.transform.position = cashPos;
         }
     }
 

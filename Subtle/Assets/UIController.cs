@@ -25,7 +25,7 @@ public class UIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -52,5 +52,5 @@ public class UIController : MonoBehaviour
         SceneManager.LoadScene("SampleScene");
     }
 
-
+    
 }
