@@ -204,6 +204,13 @@ public class Player : MonoBehaviour
             jumpVelocity +=10;
             Destroy(obstacle.gameObject);
         }
+        else if (obstacle.tag == "Cash")
+        {
+            
+            maxXVelocity += 10;
+            jumpVelocity +=5;
+            Destroy(obstacle.gameObject);
+        }
     }
 
 
