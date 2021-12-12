@@ -29,10 +29,11 @@ public class Player : MonoBehaviour
 
     private float boostTimer;
     private bool boosting;
+    SpriteRenderer sr;
 
     void Start()
     {
-
+        sr = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -78,15 +79,17 @@ public class Player : MonoBehaviour
         if (boosting)
         {
             boostTimer += Time.deltaTime;
-            int boostInterval = Random.Range(0, 4);
+            int boostInterval = Random.Range(2, 4);
             //this is timer 
             if (boostTimer >= boostInterval)
             {
+                sr.color = Color.white;
                 maxXVelocity -= 20;
                 jumpVelocity -= 20;
                 velocity.x -= 25;
                 boostTimer = 0;
                 boosting = false;
+
             }
         }
 
@@ -206,7 +209,8 @@ public class Player : MonoBehaviour
         {
             boosting = true;
             velocity.x += 15;
-            jumpVelocity += 15;
+            jumpVelocity += 10;
+            sr.color = Color.magenta;
             Destroy(obstacle.gameObject);
         }
         else if (obstacle.tag == "Cash")
@@ -214,7 +218,7 @@ public class Player : MonoBehaviour
 
             maxXVelocity += 15;
             velocity.x += 3;
-            jumpVelocity += 5;
+            jumpVelocity += 3;
             Destroy(obstacle.gameObject);
         }
     }
