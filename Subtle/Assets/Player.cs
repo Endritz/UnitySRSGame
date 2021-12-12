@@ -7,8 +7,8 @@ public class Player : MonoBehaviour
 
     public float gravity;
     public Vector2 velocity;
-    public float maxXVelocity = 100;
-    public float maxAcceleration = 10;
+    public float maxXVelocity = 50;
+    public float maxAcceleration = 5;
     public float acceleration = 10;
     public float distance = 0;
     public float jumpVelocity = 20;
@@ -78,8 +78,9 @@ public class Player : MonoBehaviour
         if (boosting)
         {
             boostTimer += Time.deltaTime;
+            int boostInterval = Random.Range(0, 4);
             //this is timer 
-            if (boostTimer >= 5)
+            if (boostTimer >= boostInterval)
             {
                 maxXVelocity -= 20;
                 jumpVelocity -= 20;
@@ -204,14 +205,15 @@ public class Player : MonoBehaviour
         if (obstacle.tag == "Drug")
         {
             boosting = true;
-            velocity.x += 10;
-            jumpVelocity += 10;
+            velocity.x += 15;
+            jumpVelocity += 15;
             Destroy(obstacle.gameObject);
         }
         else if (obstacle.tag == "Cash")
         {
 
             maxXVelocity += 15;
+            velocity.x += 3;
             jumpVelocity += 5;
             Destroy(obstacle.gameObject);
         }
