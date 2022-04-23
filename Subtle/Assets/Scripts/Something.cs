@@ -19,11 +19,15 @@ public class Something : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             anim.SetBool("isJumping", true);
+            anim.SetBool("isRunning", false);
         }
         else
         {
             anim.SetBool("isJumping", false);
+            anim.SetBool("isRunning", true);
         }
+
+
         //else
         //{
         //    Player.GetComponent<Animator>().Play("Run");
