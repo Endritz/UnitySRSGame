@@ -21,4 +21,12 @@ public class UIControllerTitle : MonoBehaviour
     {
         SceneManager.LoadScene("SampleScene");
     }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+    public void CancelButton()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 }

@@ -217,8 +217,8 @@ public class Player : MonoBehaviour
         {
 
             maxXVelocity += 15;
-            velocity.x += 3;
-            jumpVelocity += 3;
+            velocity.x += 6;
+            jumpVelocity += 8;
             Destroy(obstacle.gameObject);
         }
     }
